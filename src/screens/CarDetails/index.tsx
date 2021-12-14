@@ -2,6 +2,13 @@ import React from 'react';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 
+import speedSvg from '../../assets/speed.svg';
+import accelerationSvg from '../../assets/acceleration.svg';
+import forceSvg from '../../assets/force.svg';
+import gasolineSvg from '../../assets/gasoline.svg';
+import exchangeSvg from '../../assets/exchange.svg';
+import peopleSvg from '../../assets/people.svg';
+
 import {
   Container,
   Header,
@@ -14,8 +21,10 @@ import {
   Rent,
   Period,
   Price,
+  Accessories,
   About,
 } from './styles';
+import { Accessory } from '../../components/Accessory';
 
 export function CarDetails(){
 
@@ -48,6 +57,15 @@ export function CarDetails(){
             <Price>R$ 580</Price>
           </Rent>
         </Details>
+
+        <Accessories>
+          <Accessory name="a" icon={speedSvg} />
+          <Accessory name="b" icon={accelerationSvg} />
+          <Accessory name="c" icon={forceSvg} />
+          <Accessory name="d" icon={gasolineSvg} />
+          <Accessory name="e" icon={exchangeSvg} />
+          <Accessory name="f" icon={peopleSvg} />
+        </Accessories>
 
         <About>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit tincidunt lacinia.
