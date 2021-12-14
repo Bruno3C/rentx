@@ -7,7 +7,8 @@ import {
   Title,
   Header,
   HeaderContent,
-  TotalCars
+  TotalCars,
+  CardList
 } from './styles';
 
 import Logo from '../../assets/logo.svg';
@@ -51,8 +52,11 @@ export function Home(){
         </HeaderContent>
       </Header>
 
-      <Car data={carDataOne} />
-      <Car data={carDataTwo} />
+      <CardList
+        data={[1,2,3,4,5,6,7]}
+        keyExtractor={item => String(item)}
+        renderItem={({item}) => <Car data={carDataOne}/>}
+      />
     </Container>
   );
 }
