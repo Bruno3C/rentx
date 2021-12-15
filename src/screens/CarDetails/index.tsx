@@ -77,7 +77,7 @@ export function CarDetails(){
       </Content>
 
       <Footer>
-        <Button title='Entrar' />
+        <Button title='Continuar' />
       </Footer>
     </Container>
   );
