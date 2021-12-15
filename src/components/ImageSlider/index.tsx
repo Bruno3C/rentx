@@ -8,6 +8,8 @@ import {
   CarImage,
 } from './styles';
 
+import CarPng from '../../assets/placeholder_car.png';
+
 interface Props {
   imagesUrl: string[];
 }
@@ -24,7 +26,7 @@ export function ImageSlider({imagesUrl}:Props){
 
       <CarImageWrapper>
         <CarImage
-          source={{ uri: imagesUrl[0] }}
+          source={CarPng}
           resizeMode="contain"
         />
       </CarImageWrapper>

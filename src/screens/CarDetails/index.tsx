@@ -23,13 +23,15 @@ import {
   Price,
   Accessories,
   About,
+  Footer
 } from './styles';
 import { Accessory } from '../../components/Accessory';
+import { Button } from '../../components/Button';
 
 export function CarDetails(){
 
   const imageUrl = [
-    'https://w7.pngwing.com/pngs/38/708/png-transparent-car-mercedes-car-love-compact-car-vehicle-thumbnail.png'
+    'https://toppng.com/uploads/preview/car-115450452480adfbyu2mv.png'
   ];
 
     return (
@@ -59,20 +61,24 @@ export function CarDetails(){
         </Details>
 
         <Accessories>
-          <Accessory name="a" icon={speedSvg} />
-          <Accessory name="b" icon={accelerationSvg} />
-          <Accessory name="c" icon={forceSvg} />
-          <Accessory name="d" icon={gasolineSvg} />
-          <Accessory name="e" icon={exchangeSvg} />
-          <Accessory name="f" icon={peopleSvg} />
+          <Accessory name="380Km/h" icon={speedSvg} />
+          <Accessory name="3.2s" icon={accelerationSvg} />
+          <Accessory name="800 HP" icon={forceSvg} />
+          <Accessory name="Gasolina" icon={gasolineSvg} />
+          <Accessory name="Auto" icon={exchangeSvg} />
+          <Accessory name="2 Pessoas" icon={peopleSvg} />
         </Accessories>
 
         <About>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit tincidunt lacinia.
-        Ut sem est, varius non cursus ac, efficitur eu lacus. 
-        Vivamus faucibus quis eros sit amet suscipit. 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam blandit tincidunt lacinia.
+          Ut sem est, varius non cursus ac, efficitur eu lacus. 
+          Vivamus faucibus quis eros sit amet suscipit. 
         </About>
       </Content>
+
+      <Footer>
+        <Button title='Entrar' />
+      </Footer>
     </Container>
   );
 }
