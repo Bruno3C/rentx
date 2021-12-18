@@ -15,6 +15,8 @@ interface Props extends BorderlessButtonProps {
 export function BackButton({color, ...rest}: Props){
   const theme = useTheme();
 
+  
+
   return (
     <Container {...rest}>
       <MaterialIcons

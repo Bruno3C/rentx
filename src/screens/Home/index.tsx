@@ -25,28 +25,8 @@ export function Home(){
   const [loading, setLoading] = useState(false);
   const {navigate} = useNavigation();
 
-  const carDataOne = {
-    brand: 'Audi',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'AO DIA',
-      price: 120,
-    },
-    thumbnail:'https://w7.pngwing.com/pngs/866/237/png-transparent-2018-toyota-corolla-toyota-matrix-car-opel-astra-2018-compact-car-sedan-subcompact-car.png'
-  };
-
-  const carDataTwo = {
-    brand: 'Audi',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'AO DIA',
-      price: 120,
-    },
-    thumbnail:'https://w7.pngwing.com/pngs/866/237/png-transparent-2018-toyota-corolla-toyota-matrix-car-opel-astra-2018-compact-car-sedan-subcompact-car.png'
-  };
-
-  function handleCarDetails() {
-    navigate('CarDetails');
+  function handleCarDetails(car: CarDTO) {
+    navigate('CarDetails', { car });
   }
 
   useEffect(() => {
@@ -90,7 +70,7 @@ export function Home(){
          renderItem={({item }) => 
            <Car 
              data={item}
-             onPress={handleCarDetails}
+             onPress={() => handleCarDetails(item)}
            />
          }
         />
