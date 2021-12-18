@@ -15,9 +15,10 @@ import { ThemeProvider } from 'styled-components/native';
 import theme from './src/styles/theme';
 
 
-import { Home } from './src/screens/Home';
-import { CarDetails } from './src/screens/CarDetails'; 
-import { Scheduling } from './src/screens/Scheduling';
+// import { Home } from './src/screens/Home';
+// import { CarDetails } from './src/screens/CarDetails'; 
+// import { Scheduling } from './src/screens/Scheduling';
+import { ShedulingDetails } from './src/screens/ShedulingDetails';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -34,7 +35,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Scheduling />
+      <ShedulingDetails />
     </ThemeProvider>
   );
 }
