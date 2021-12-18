@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 import { Feather } from '@expo/vector-icons';
 
 import { BackButton } from '../../components/BackButton';
@@ -44,12 +46,18 @@ import { useTheme } from 'styled-components';
 export function ShedulingDetails(){
 
   const theme = useTheme();
+  const { navigate } = useNavigation();
 
   const imageUrl = [
     'https://toppng.com/uploads/preview/car-115450452480adfbyu2mv.png'
   ];
 
-    return (
+  function handleConfirmRental() {
+    navigate('ShedulingComplete');
+  }
+
+
+  return (
     <Container>
       <Header>
         <BackButton
@@ -120,7 +128,7 @@ export function ShedulingDetails(){
       </Content>
 
       <Footer>
-        <Button title='Alugar agora' color={theme.colors.success} />
+        <Button title='Alugar agora' color={theme.colors.success} onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );

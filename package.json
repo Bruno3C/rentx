@@ -11,6 +11,9 @@
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.2.0",
     "@expo-google-fonts/inter": "^0.2.0",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/native": "^5.x",
+    "@react-navigation/stack": "^5.x",
     "expo": "~43.0.2",
     "expo-app-loading": "~1.2.1",
     "expo-font": "~10.0.3",

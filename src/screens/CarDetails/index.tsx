@@ -9,6 +9,8 @@ import gasolineSvg from '../../assets/gasoline.svg';
 import exchangeSvg from '../../assets/exchange.svg';
 import peopleSvg from '../../assets/people.svg';
 
+import { useNavigation } from '@react-navigation/native';
+
 import {
   Container,
   Header,
@@ -29,6 +31,12 @@ import { Accessory } from '../../components/Accessory';
 import { Button } from '../../components/Button';
 
 export function CarDetails(){
+
+  const { navigate } = useNavigation();
+
+  function handleConfirmRental() {
+    navigate('Scheduling');
+  }
 
   const imageUrl = [
     'https://toppng.com/uploads/preview/car-115450452480adfbyu2mv.png'
@@ -77,7 +85,7 @@ export function CarDetails(){
       </Content>
 
       <Footer>
-        <Button title='Continuar' />
+        <Button title='Escolher período do aluguel' onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );
