@@ -43,14 +43,10 @@ export function Scheduling(){
   const { navigate, goBack } = useNavigation();
 
   function handleConfirmRental() {
-    if(!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-      Alert.alert('Selecione o intervalo para alugar.');
-    } else {
-      navigate('ShedulingDetails', {
-        car,
-        dates: Object.keys(markedDates)
-      });
-    }
+    navigate('ShedulingDetails', {
+      car,
+      dates: Object.keys(markedDates)
+    });
   }
 
   function handleBack() {
@@ -123,7 +119,11 @@ export function Scheduling(){
       </Content>
 
       <Footer>
-        <Button title='Confirmar' onPress={handleConfirmRental}/>
+        <Button 
+          title='Confirmar' 
+          enabled={!rentalPeriod.startFormatted ? false : true} 
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );

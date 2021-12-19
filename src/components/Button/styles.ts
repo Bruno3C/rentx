@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 
 interface ButtonProps extends RectButtonProps {
   color?:string;
+  enabled: boolean;
 }
 
 export const Container = styled(RectButton)<ButtonProps>`
@@ -14,6 +15,7 @@ export const Container = styled(RectButton)<ButtonProps>`
   justify-content: center;
 
   background-color: ${({ theme, color}) => color ? color : theme.colors.main};
+  opacity: ${({ theme, enabled}) => enabled ? 1 : 0.5};
 `;
 
 export const Title = styled.Text`

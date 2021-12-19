@@ -9,15 +9,20 @@ import {
 interface Props extends RectButtonProps {
   title: string;
   color?: string;
+  enabled?: boolean;
 }
 
 export function Button({
   title,
   color,
+  enabled = true,
   ...rest
 }: Props){
   return (
-    <Container color={color} {...rest}>
+    <Container 
+      color={color}
+      enabled={enabled}
+      {...rest}>
       <Title>{title}</Title>
     </Container>
   );
