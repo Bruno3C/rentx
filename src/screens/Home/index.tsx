@@ -34,7 +34,6 @@ export function Home(){
       setLoading(true);
       try {
         const response = await api.get('/cars');
-        console.log('response => ', response.data);
         setCars(response.data);
       } catch (error) {
         console.log('error => ', error);

@@ -56,7 +56,6 @@ export function ShedulingDetails(){
     navigate('ShedulingComplete');
   }
 
-
   return (
     <Container>
       <Header>
