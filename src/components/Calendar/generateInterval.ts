@@ -3,7 +3,6 @@ import { eachDayOfInterval, format, parseISO} from 'date-fns';
 import { MarkedDateProps, DayProps } from '.';
 import { getPlatformDate } from '../../utils/getPlatformDate';
 import theme from '../../styles/theme';
-import { CalendarProps } from 'react-native-calendars';
 
 export function generateInterval(start: DayProps, end: DayProps){
 
@@ -25,6 +24,6 @@ export function generateInterval(start: DayProps, end: DayProps){
       }
     }
   });
-    
+
   return interval;
 }
