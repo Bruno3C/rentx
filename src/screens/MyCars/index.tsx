@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { CarDTO } from '../../dtos/CarDTO';
 import { BackButton } from '../../components/BackButton';
+import { AntDesign } from '@expo/vector-icons';
 import { api } from '../../services/api';
 
 import {
@@ -15,15 +16,23 @@ import {
   Content,
   Appointments,
   AppointmentsTitle,
-  AppointmentsQuantity
+  AppointmentsQuantity,
+  CarWrapper,
+  CarFooter,
+  CarFooterTitle,
+  CarFooterPeriod,
+  CarFooterDate,
 } from './styles';
 import { FlatList } from 'react-native-gesture-handler';
 import { Car } from '../../components/Car';
+import { Load } from '../../components/Load';
 
 interface CarProps {
   id: string;
   user_id: string;
   car: CarDTO;
+  startDate: string;
+  endDate: string;
 }
 
 export function MyCars(){
@@ -72,10 +81,11 @@ export function MyCars(){
           Conforto, segurança e praticidade.
         </SubTitle>
       </Header>
-      <Content>
+      {loading ? <Load/> :
+        <Content>
         <Appointments>
           <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
-          <AppointmentsQuantity>05</AppointmentsQuantity>
+          <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
         </Appointments>
 
         <FlatList
@@ -83,10 +93,26 @@ export function MyCars(){
           keyExtractor={item => item.id}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
-            <Car data={item.car} />
+            <CarWrapper>
+              <Car data={item.car} />
+              <CarFooter>
+                <CarFooterTitle>PERÍODO</CarFooterTitle>
+                <CarFooterPeriod>
+                  <CarFooterDate>{item.startDate}</CarFooterDate>
+                  <AntDesign 
+                    name="arrowright"
+                    size={15}
+                    color={theme.colors.text}
+                    style={{marginHorizontal: 10}}
+                  />
+                  <CarFooterDate>{item.endDate}</CarFooterDate>
+                </CarFooterPeriod>
+              </CarFooter>
+            </CarWrapper>
           )}
         />
-      </Content>
+        </Content>
+      }
     </Container>
   );
 }
