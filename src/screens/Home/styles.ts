@@ -1,4 +1,5 @@
 import { FlatList, FlatListProps } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 import { CarDTO } from '../../dtos/CarDTO';
@@ -44,3 +45,18 @@ export const CardList = styled(FlatList as new (props: FlatListProps<CarDTO>) =>
   },
   showsVerticalScrollIndicator: false
 })``;
+
+export const MyCarsButton = styled(RectButton)`
+  height: 60px;
+  width: 60px;
+
+  border-radius: 30px;
+  background-color: ${({theme}) => theme.colors.main};
+
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  right: 22px;
+  bottom: 13px;
+`;
