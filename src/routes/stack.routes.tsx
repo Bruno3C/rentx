@@ -18,12 +18,12 @@ export function StackRoutes() {
       initialRouteName='Splash'
     >
       <Screen
-        name="Splash"
-        component={Splash}
-      />
-      <Screen
         name="Home"
         component={Home}
+      />
+      <Screen
+        name="Splash"
+        component={Splash}
       />
       <Screen
         name="CarDetails"

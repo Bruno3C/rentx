@@ -19,18 +19,26 @@ import {
 
 export function Splash(){
   const splashAnimation = useSharedValue(0);
-  const { navigate } = useNavigation();
+
+  const { reset, navigate } = useNavigation();
 
   const brandStyle = useAnimatedStyle(() => {
     return {
-      opacity: interpolate(splashAnimation.value, [0, 50],[1, 0]),
+      opacity: interpolate(splashAnimation.value, [0, 30, 40 ,50],[1,0.8,0.9,0]),
       transform: [
         {
           translateX: interpolate(splashAnimation.value,
-            [0, 50],
-            [0, -50],
+            [0, 20, 30, 40, 50],
+            [0, 50, 65, 75, 75],
             Extrapolate.CLAMP 
-          )
+          ),
+        }, 
+        {
+          scale: interpolate(splashAnimation.value,
+            [0, 50],
+            [1, .3],
+            Extrapolate.CLAMP 
+          ),
         }
       ],
     }
@@ -38,27 +46,21 @@ export function Splash(){
 
   const logoStyle = useAnimatedStyle(() => {
     return {
-      opacity: interpolate(splashAnimation.value, [0, 25, 50],[0, .3,  1]),
-      transform: [
-        {
-          translateX: interpolate(splashAnimation.value,
-            [0, 50],
-            [-50, 0],
-            Extrapolate.CLAMP 
-          )
-        }
-      ],
+      opacity: interpolate(splashAnimation.value, [0, 25, 35, 40, 50],[0, 0, .3, .8, 1]),
     }
   });
 
   function startApp() {
+    reset({index: 1,
+      routes: [{ name: 'Home' }]
+    });
     navigate('Home');
   }
 
   useEffect(() => {
     splashAnimation.value = withTiming( 
       50,
-      { duration: 1000 },
+      { duration: 1500 },
       () => {
         'worklet'
         runOnJS(startApp)();
@@ -68,7 +70,7 @@ export function Splash(){
 
   return (
     <Container>
-      <Animated.View style={[brandStyle, {position: 'absolute'}]}>
+      <Animated.View style={[brandStyle]}>
         <BrandSvg width={80} height={50} />
       </Animated.View>
 
