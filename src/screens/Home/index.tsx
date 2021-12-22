@@ -19,7 +19,7 @@ const ButtonAnimated = Animated.createAnimatedComponent(RectButton);
 import { CarDTO } from '../../dtos/CarDTO';
 import Logo from '../../assets/logo.svg';
 import { Car } from '../../components/Car';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 import { useTheme } from 'styled-components';
 
 import {
@@ -115,7 +115,7 @@ export function Home(){
         </HeaderContent>
       </Header>
       {
-        loading? <Load /> : 
+        loading? <LoadAnimation /> : 
         <CardList
          data={cars}
          keyExtractor={(item) => item.id}

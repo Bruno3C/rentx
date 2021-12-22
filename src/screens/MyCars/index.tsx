@@ -25,7 +25,7 @@ import {
 } from './styles';
 import { FlatList } from 'react-native-gesture-handler';
 import { Car } from '../../components/Car';
-import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 interface CarProps {
   id: string;
@@ -81,7 +81,7 @@ export function MyCars(){
           Conforto, segurança e praticidade.
         </SubTitle>
       </Header>
-      {loading ? <Load/> :
+      {loading ? <LoadAnimation/> :
         <Content>
         <Appointments>
           <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
