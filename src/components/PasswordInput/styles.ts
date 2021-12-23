@@ -1,10 +1,8 @@
-import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
   flex-direction: row;
-
-  margin-bottom: 8px;
 `;
 
 export const IconContainer = styled.View`
@@ -27,3 +25,5 @@ export const InputText = styled.TextInput`
 
   padding: 0 23px;
 `;
+
+
