@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
 import theme from '../../styles/theme';
 
 import {
@@ -7,6 +8,7 @@ import {
   Header, 
   Title,
   SubTitle,
+  Form,
   Footer
 } from './styles';
 
@@ -17,6 +19,10 @@ export function SignIn(){
         <Title>Estamos{`\n`}quase lá.</Title>
         <SubTitle>Faça seu login para começar{`\n`}uma esperiência incrível.</SubTitle>
       </Header>
+      <Form>
+        <Input iconName="mail"/>
+        <Input iconName="lock" />
+      </Form>
       <Footer>
         <Button
           title="Login"
