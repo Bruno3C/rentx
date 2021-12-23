@@ -20,7 +20,13 @@ export function SignIn(){
         <SubTitle>Faça seu login para começar{`\n`}uma esperiência incrível.</SubTitle>
       </Header>
       <Form>
-        <Input iconName="mail"/>
+        <Input 
+          iconName="mail"
+          placeholder="E-mail"
+          keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+        />
         <Input iconName="lock" />
       </Form>
       <Footer>
