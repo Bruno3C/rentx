@@ -18,7 +18,7 @@ export function StackRoutes() {
   return (
     <Navigator 
       headerMode='none'
-      initialRouteName='SignIn'
+      initialRouteName='Home'
     >
       <Screen
         name="Home"

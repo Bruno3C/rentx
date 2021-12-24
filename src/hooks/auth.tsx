@@ -1,3 +1,4 @@
+import axios, { AxiosError } from 'axios';
 import React, {
   createContext,
   useState,
@@ -46,10 +47,9 @@ function AuthProvider({ children }: AuthProviderProps ) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setData({ token, user});
       
-    } catch (error) {
-      console.error('error sign in => ', error.response.data);
+    } catch (error:any) {
+      throw new Error(error);
     }
-
   }
 
   return (

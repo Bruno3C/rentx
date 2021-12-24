@@ -5,6 +5,7 @@ import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
 import theme from '../../styles/theme';
 import { useAuth } from '../../hooks/auth';
+import axios from 'axios';
 
 import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
@@ -43,6 +44,9 @@ export function SignIn(){
       if(error instanceof Yup.ValidationError){
         Alert.alert('Opa', error.message);
       } else {
+        if(axios.isAxiosError(error)) {
+          console.error(error.response?.data);
+        }
         Alert.alert(
           'Erro na autenticação',
           'Ocorreu um erro ao fazer login, verifique as credencias'
