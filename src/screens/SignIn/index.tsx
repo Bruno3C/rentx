@@ -4,6 +4,7 @@ import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
 import theme from '../../styles/theme';
+import { useAuth } from '../../hooks/auth';
 
 import * as Yup from 'yup';
 import { useNavigation } from '@react-navigation/native';
@@ -17,11 +18,13 @@ import {
   Footer
 } from './styles';
 
+
 export function SignIn(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const { navigate } = useNavigation();
+  const { signIn } = useAuth();
 
   async function handleSignIn() {
     try {
@@ -34,6 +37,8 @@ export function SignIn(){
       });
   
       await shema.validate({ email, password });
+
+      await signIn({email, password});
     } catch (error) {
       if(error instanceof Yup.ValidationError){
         Alert.alert('Opa', error.message);
