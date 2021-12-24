@@ -7,6 +7,7 @@ import { PasswordInput } from '../../components/PasswordInput';
 import theme from '../../styles/theme';
 
 import * as Yup from 'yup';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container, 
@@ -20,6 +21,8 @@ import {
 export function SignIn(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { navigate } = useNavigation();
 
   async function handleSignIn() {
     try {
@@ -42,6 +45,10 @@ export function SignIn(){
         );
       }
     }
+  }
+
+  function handleNewAccount() {
+    navigate('SignUpFirstStep');
   }
 
   return (
@@ -79,7 +86,7 @@ export function SignIn(){
             <Button
               title="Cadastrar gratuitamente"
               color={theme.colors.background_secondary}
-              onPress={() => {}}
+              onPress={handleNewAccount}
               light
               loading={false}
             />
