@@ -18,7 +18,7 @@ export function StackRoutes() {
   return (
     <Navigator 
       headerMode='none'
-      initialRouteName='SignUpSecoundStep'
+      initialRouteName='SignIn'
     >
       <Screen
         name="Home"
@@ -30,6 +30,10 @@ export function StackRoutes() {
       <Screen
         name="SignIn"
         component={SignIn}
+      />
+      <Screen
+        name="SignUpFirstStep"
+        component={SignUpFirstStep}
       />
       <Screen
         name="SignUpSecoundStep"

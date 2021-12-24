@@ -1,7 +1,13 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
+
+import { Bullet } from '../../../components/Bullet';
+import { Input } from '../../../components/Input';
+import { Button } from '../../../components/Button';
 import { BackButton } from '../../../components/BackButton';
-import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
+import * as Yup from 'yup';
 
 import {
   Container,
@@ -12,15 +18,37 @@ import {
   Form,
   FormTitle
 } from './styles';
-import { Bullet } from '../../../components/Bullet';
-import { Input } from '../../../components/Input';
-import { Button } from '../../../components/Button';
+
 
 export function SignUpFirstStep(){
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [driverLicense, setDriverLicense] = useState('');
+
   const navigation = useNavigation();
 
   function handleBack() {
     navigation.goBack();
+  }
+
+  async function handleNextStep() {
+    try {
+      const schema = Yup.object({
+        driverLicense: Yup.string().required('O CNH é obrigatório.'),
+        email: Yup.string().required('O E-mail é obrigatório.')
+        .email('O E-mail é inválido.'),
+        name: Yup.string().required('O nome é obrigatório.'),
+      });
+
+      const data = { name, email, driverLicense };
+      await schema.validate(data);
+
+      navigation.navigate('SignUpSecoundStep', { user: data });
+    } catch (error) {
+      if(error instanceof Yup.ValidationError) {
+        return Alert.alert('Opa', error.message);
+      }   
+    }
   }
 
   return (
@@ -30,8 +58,8 @@ export function SignUpFirstStep(){
           <Header>
             <BackButton onPress={handleBack} />
             <Steps>
-              <Bullet active={true} />
-              <Bullet active={false} />
+              <Bullet active />
+              <Bullet/>
             </Steps>
           </Header>
 
@@ -48,6 +76,8 @@ export function SignUpFirstStep(){
               iconName="user"
               placeholder="Nome"
               autoCorrect={false}
+              value={name}
+              onChangeText={setName}
             />
             <Input
               iconName="mail"
@@ -55,18 +85,21 @@ export function SignUpFirstStep(){
               autoCapitalize="none"
               autoCorrect={false}
               keyboardType="email-address"
-
+              value={email}
+              onChangeText={setEmail}
             />
             <Input
               iconName="credit-card"
               placeholder="CNH"
               autoCorrect={false}
               keyboardType="numeric"
+              value={driverLicense}
+              onChangeText={setDriverLicense}
             />
           </Form>
           <Button
             title="Proximo"
-            onPress={() => {}}
+            onPress={handleNextStep}
           />
         </Container>
       </TouchableWithoutFeedback>
