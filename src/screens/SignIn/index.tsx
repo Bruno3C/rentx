@@ -1,5 +1,11 @@
-import React, { useState } from 'react';
-import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { 
+  Alert, 
+  Keyboard, 
+  KeyboardAvoidingView, 
+  TouchableWithoutFeedback,
+  BackHandler
+} from 'react-native';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
@@ -58,6 +64,12 @@ export function SignIn(){
   function handleNewAccount() {
     navigate('SignUpFirstStep');
   }
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
+  }, [])
 
   return (
     <KeyboardAvoidingView behavior="position" enabled>

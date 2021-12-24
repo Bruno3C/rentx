@@ -51,10 +51,7 @@ export function Splash(){
   });
 
   function startApp() {
-    reset({index: 1,
-      routes: [{ name: 'Home' }]
-    });
-    navigate('Home');
+    navigate('SignIn');
   }
 
   useEffect(() => {
