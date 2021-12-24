@@ -5,12 +5,12 @@ import { Home } from '../screens/Home';
 import { CarDetails } from '../screens/CarDetails';
 import { Scheduling } from '../screens/Scheduling';
 import { ShedulingDetails } from '../screens/ShedulingDetails';
-import { ShedulingComplete } from '../screens/ShedulingComplete';
 import { MyCars } from '../screens/MyCars';
 import { Splash } from '../screens/Splash';
 import { SignIn } from '../screens/SignIn';
 import { SignUpFirstStep } from '../screens/SignUp/SignUpFirstStep';
 import { SignUpSecoundStep } from '../screens/SignUp/SignUpSecoundStep';
+import { Confirmation } from '../screens/Confirmation';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -52,8 +52,8 @@ export function StackRoutes() {
         component={ShedulingDetails}
       />
       <Screen
-        name="ShedulingComplete"
-        component={ShedulingComplete}
+        name="Confirmation"
+        component={Confirmation}
       />  
       <Screen
         name="MyCars"
