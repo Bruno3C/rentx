@@ -3,6 +3,7 @@ import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { useNavigation } from '@react-navigation/native';
+import {useNetInfo} from '@react-native-community/netinfo';
 import { api } from '../../services/api';
 
 import { CarDTO } from '../../dtos/CarDTO';
@@ -23,6 +24,7 @@ export function Home(){
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [loading, setLoading] = useState(true);
   const {navigate} = useNavigation();
+  const netInfo = useNetInfo();
 
   function handleCarDetails(car: CarDTO) {
     navigate('CarDetails', { car });
@@ -49,6 +51,14 @@ export function Home(){
       isMounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (netInfo.isConnected) {
+      console.log('usuario conectado');
+    } else {
+      console.log('usuario desconectado');
+    }
+  }, [netInfo.isConnected]);
 
   return (
     <Container>
