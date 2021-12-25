@@ -10,12 +10,6 @@ export const Container = styled.View`
   background-color: ${({theme}) => theme.colors.background_primary};
 `;
 
-export const Title = styled.Text`
-  font-size: ${RFValue(30)}px;
-  font-family: ${({theme}) => theme.fonts.secondary_600};
-  color: ${({theme}) => theme.colors.background_secondary};
-`;
-
 export const Header = styled.View`
   width: 100%;
   height: 113px;

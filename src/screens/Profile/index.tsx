@@ -31,7 +31,7 @@ import {
 } from './styles';
 
 export function Profile(){
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
   const [avatar, setAvatar] = useState(user.avatar);
   const [name, setName] = useState(user.name);
@@ -44,8 +44,12 @@ export function Profile(){
     goBack();
   }
 
-  function handleSignOut() {
-    
+  async function handleSignOut() {
+    try {
+      await signOut();
+    } catch (error) {
+      
+    }
   }
 
   async function handleAvatarSelect() {
