@@ -7,8 +7,7 @@ interface OptionProps {
   active: boolean;
 }
 
-export const Container = styled.View`
-  flex: 1;  
+export const Container = styled.View` 
   background-color: ${({ theme }) => theme.colors.background_primary };
 `;
 
@@ -69,10 +68,10 @@ export const PhotoButton = styled(RectButton)`
 `;
 
 export const Content = styled.View`
-  flex: 1;
   padding: 0 24px;
   margin-top: 122px;
 `;
+
 export const Options = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.colors.line };
@@ -82,6 +81,7 @@ export const Options = styled.View`
 
   margin-bottom: 24px;
 `;
+
 export const Option = styled.TouchableOpacity<OptionProps>`
   padding-bottom: 14px;
 
@@ -90,6 +90,7 @@ export const Option = styled.TouchableOpacity<OptionProps>`
     border-bottom-color: ${theme.colors.main};
   `}
 `;
+
 export const OptionTitle = styled.Text<OptionProps>`
   font-size: ${RFValue(20)}px;
   font-family: ${({theme, active }) => 
@@ -97,3 +98,5 @@ export const OptionTitle = styled.Text<OptionProps>`
   color: ${({ theme, active }) => 
   active? theme.colors.header : theme.colors.text_detail };
 `;
+
+export const Section = styled.View``;
