@@ -104,6 +104,7 @@ export function Profile(){
 
       Alert.alert('Perfil atualizado!');
     } catch (error) {
+      console.log('update user error =>', error)
       if(error instanceof Yup.ValidationError){
         Alert.alert('Opa', error.message);
       } else {

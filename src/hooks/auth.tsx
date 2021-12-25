@@ -41,14 +41,13 @@ function AuthProvider({ children }: AuthProviderProps ) {
 
   async function signIn({ email, password }: SignInCredentials) {
     try {
-      console.log('credentials',{ email, password });
       const response = await api.post('/sessions', {email, password});
       const { token, user } = response.data;
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       const userCollection = database.get<ModelUser>('users');
       await database.write(async () => {
-        await userCollection.create(( newUser ) => {
+        const userDB = await userCollection.create(( newUser ) => {
           newUser.user_id = user.id,
           newUser.name = user.name,
           newUser.email = user.email,
@@ -56,11 +55,11 @@ function AuthProvider({ children }: AuthProviderProps ) {
           newUser.avatar = user.avatar,
           newUser.token = token
         });
+        if(userDB.user_id) {
+          setData({ token, ...user, id: userDB.user_id });
+        }
       });
 
-      setData({ token, ...user });
-
-      
     } catch (error:any) {
       throw new Error(error);
     }
