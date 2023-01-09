@@ -35,7 +35,7 @@ export function SignIn(){
 
   async function handleSignIn() {
     try {
-      const shema = Yup.object().shape({
+      const schema = Yup.object().shape({
         password: Yup.string()
           .required('A senha é obrigatória'),
         email: Yup.string()
@@ -43,7 +43,7 @@ export function SignIn(){
           .email('Digite um e-mail válido'),
       });
   
-      await shema.validate({ email, password });
+      await schema.validate({ email, password });
 
       await signIn({email, password});
     } catch (error) {

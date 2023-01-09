@@ -28,6 +28,7 @@ interface AuthContextData {
   signIn: (credentials: SignInCredentials) => Promise<void>;
   signOut: () => Promise<void>;
   updateUser: (user: User) => Promise<void>;
+  loading: boolean;
 }
 
 interface AuthProviderProps {
@@ -38,11 +39,14 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps ) {
   const [data, setData] = useState<User>({} as User);
+  const [loading, setLoading] = useState(true);
 
   async function signIn({ email, password }: SignInCredentials) {
     try {
       const response = await api.post('/sessions', {email, password});
       const { token, user } = response.data;
+
+      console.log('user api', user);
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
       const userCollection = database.get<ModelUser>('users');
@@ -55,6 +59,9 @@ function AuthProvider({ children }: AuthProviderProps ) {
           newUser.avatar = user.avatar,
           newUser.token = token
         });
+
+        console.log('userDb id', userDB.user_id);
+        
         if(userDB.user_id) {
           setData({ token, ...user, id: userDB.user_id });
         }
@@ -79,10 +86,13 @@ function AuthProvider({ children }: AuthProviderProps ) {
   }
 
   async function updateUser(user: User) {
+    console.log('user update', user);
     try {
       const userCollection = database.get<ModelUser>('users');
       await database.write(async () => {
         const userSelected = await userCollection.find(data.id);
+        console.log('user selected', userSelected._raw);
+        
         await userSelected.update(( userData ) => {
           userData.name = user.name,
           userData.driver_license = user.driver_license,
@@ -100,12 +110,14 @@ function AuthProvider({ children }: AuthProviderProps ) {
     async function loadUserData() {
       const userCollection = database.get<ModelUser>('users');
       const response = await userCollection.query().fetch();
+      
       if(response.length > 0) {
         const userData = response[0]._raw as unknown as User;
   
         api.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`;
         setData(userData);
       }
+      setLoading(false);
     }
     loadUserData();
   },[]);
@@ -116,7 +128,8 @@ function AuthProvider({ children }: AuthProviderProps ) {
         user: data,
         signIn,
         signOut,
-        updateUser
+        updateUser,
+        loading
       }}
     >
       {children}
